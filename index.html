@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FitCalc</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
@@ -22,6 +22,8 @@
             <section class="tabs">
                 <button id="bmi" class="active" onclick="handleTabs(event)">BMI</button>
                 <button id="water"  onclick="handleTabs(event)">Water Intake</button>
+                   <button id="calorie" onclick="handleTabs(event)">Calorie Intake</button>
+                   <button id="steps" onclick="handleTabs(event)">Step Goal</button>
             </section>
 
             <section class="calculator">
@@ -79,11 +81,103 @@
                         </div>
                     </div>
                 </div>
+                   <div for="calorie" class="tab-content">
+                       <p>
+                           Calculate your daily calorie needs using the Mifflin-St Jeor formula. Adjust for maintenance, weight loss, or weight gain. Instantly switch between Metric and Imperial units.
+                       </p>
+                       <form id="calorieForm">
+                           <label for="unitToggle">Units:</label>
+                           <select id="unitToggle" name="unitToggle" onchange="handleUnitToggle()">
+                               <option value="metric">Metric (cm, kg)</option>
+                               <option value="imperial">Imperial (in, lbs)</option>
+                           </select>
+
+                           <label for="age">Age</label>
+                           <input type="number" id="calorieAge" name="age" min="1">
+
+                           <label for="gender">Gender</label>
+                           <select id="calorieGender" name="gender">
+                               <option value="male">Male</option>
+                               <option value="female">Female</option>
+                           </select>
+
+                           <label for="height">Height (<span id="heightUnit">cm</span>)</label>
+                           <input type="number" id="calorieHeight" name="height" min="1">
+
+                           <label for="weight">Weight (<span id="weightUnit">kg</span>)</label>
+                           <input type="number" id="calorieWeight" name="weight" min="1">
+
+                           <label for="activity">Activity Level</label>
+                           <select id="calorieActivity" name="activity">
+                               <option value="1.2">Sedentary (little or no exercise)</option>
+                               <option value="1.375">Lightly active (light exercise/sports 1-3 days/week)</option>
+                               <option value="1.55">Active (moderate exercise/sports 3-5 days/week)</option>
+                               <option value="1.725">Very active (hard exercise/sports 6-7 days/week)</option>
+                           </select>
+
+                           <button type="button" onclick="handleCalorie()">Calculate</button>
+                       </form>
+                       <div class="result">
+                           <div class="init">
+                               <small>Fill in the form and click calculate to view the result.</small>
+                           </div>
+                           <div class="final">
+                               <p>Maintenance Calories:</p>
+                               <h3 id="result_calorie_maint"></h3>
+                               <p>Weight Loss (-500 cal):</p>
+                               <h3 id="result_calorie_loss"></h3>
+                               <p>Weight Gain (+500 cal):</p>
+                               <h3 id="result_calorie_gain"></h3>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div for="steps" class="tab-content">
+                       <p>
+                           Get your recommended daily step count goal based on age and activity level.
+                       </p>
+                       <form id="stepsForm">
+                           <label for="stepAge">Age</label>
+                           <input type="number" id="stepAge" name="stepAge" min="1">
+
+                           <label for="stepActivity">Activity Level</label>
+                           <select id="stepActivity" name="stepActivity">
+                               <option value="sedentary">Sedentary</option>
+                               <option value="lightly active">Lightly Active</option>
+                               <option value="active">Active</option>
+                               <option value="very active">Very Active</option>
+                           </select>
+
+                           <button type="button" onclick="handleSteps()">Suggest Steps</button>
+                       </form>
+                       <div class="result">
+                           <div class="init">
+                               <small>Fill in the form and click suggest to view the result.</small>
+                           </div>
+                           <div class="final">
+                               <p>Recommended Daily Steps:</p>
+                               <h3 id="result_steps"></h3>
+                           </div>
+                       </div>
+                   </div>
             </section>
 
         </div>
     </main>
     
     <script src="main.js"></script>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                
+                <span style="font-family:'Teko',sans-serif;font-size:1.5em;font-weight:700;vertical-align:middle;">Made by Jithendra Varma</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://jithendra.in" target="_blank" rel="noopener" class="footer-link">Portfolio</a>
+                <a href="https://linkedin.com/in/jithendra11" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+                <a href="https://github.com/Jithendra1101" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
